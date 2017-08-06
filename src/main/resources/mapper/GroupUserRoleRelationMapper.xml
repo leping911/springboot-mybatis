@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlp.springboot.mapper.GroupUserRoleRelationMapper">
+	<insert id="insert" parameterType="GroupUserRoleRelation">
+		<![CDATA[
+			insert into GroupUserRoleRelation(
+            		gur_usg_id,
+            		gur_usr_id,
+            		gur_rol_id,
+            		gur_create_timestamp,
+            		gur_create_usr_id
+            ) values (
+            	#{gur_usg_id,jdbcType=VARCHAR},
+            	#{gur_usr_id,jdbcType=VARCHAR},
+            	#{gur_rol_id,jdbcType=VARCHAR},
+            	#{gur_create_timestamp,jdbcType=TIMESTAMP},
+            	#{gur_create_usr_id,jdbcType=VARCHAR}
+            )
+		]]>
+	</insert>
+
+	<delete id="deleteByGroup" parameterType="java.lang.Long">
+	    <![CDATA[
+	   		delete from GroupUserRoleRelation where
+	        	gur_usg_id = #{gur_usg_id,jdbcType=VARCHAR}
+	    ]]>
+	</delete>
+</mapper>

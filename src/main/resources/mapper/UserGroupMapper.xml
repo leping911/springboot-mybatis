@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlp.springboot.mapper.UserGroupMapper">
+	<sql id="column">usg_id,usg_name,usg_code,usg_type,usg_status,usg_desc,usg_source,
+		usg_create_timestamp,usg_create_usr_id,usg_update_timestamp,usg_update_usr_id
+	</sql>
+	<select id="get" parameterType="UserGroup" resultType="UserGroup">
+		select
+		<include refid="column" />
+		from UserGroup where usg_id = #{usg_id}
+	</select>
+	<insert id="insert" parameterType="UserGroup">
+		<![CDATA[
+			insert into UserGroup(
+            		usg_name,
+            		usg_code,
+            		usg_type,
+            		usg_status,
+            		usg_desc,
+            		usg_source,
+            		usg_create_timestamp,
+            		usg_create_usr_id
+            ) values (
+            	#{usg_name,jdbcType=VARCHAR},
+            	#{usg_code,jdbcType=VARCHAR},
+            	#{usg_type,jdbcType=TIMESTAMP},
+            	#{usg_status,jdbcType=VARCHAR},
+            	#{usg_desc,jdbcType=VARCHAR},
+            	#{usg_source,jdbcType=VARCHAR},
+            	#{usg_create_timestamp,jdbcType=TIMESTAMP},
+            	#{usg_create_usr_id,jdbcType=VARCHAR}
+            )
+		]]>
+		<selectKey keyProperty="usg_id" resultType="Long" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="update" parameterType="UserGroup">
+		<![CDATA[
+			update UserGroup set
+				usg_name = #{usg_name,jdbcType=VARCHAR},
+            	usg_code = #{usg_code,jdbcType=VARCHAR},
+            	usg_type = #{usg_type,jdbcType=TIMESTAMP},
+            	usg_status = #{usg_status,jdbcType=VARCHAR},
+            	usg_desc = #{usg_desc,jdbcType=VARCHAR},
+            	usg_source = #{usg_source,jdbcType=VARCHAR},
+            	usg_update_timestamp = #{usg_update_timestamp,jdbcType=TIMESTAMP},
+            	usg_update_usr_id = #{usg_update_usr_id,jdbcType=VARCHAR}
+				where usg_id = #{usg_id,jdbcType=VARCHAR}
+		 ]]>
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+	    <![CDATA[
+	   		delete from UserGroup where
+	        	usg_id = #{usg_id,jdbcType=VARCHAR}
+	    ]]>
+	</delete>
+
+	<select id="list" parameterType="Map" resultType="UserGroup">
+		select
+		<include refid="column" />
+		from UserGroup
+	</select>
+	
+	<select id="page" parameterType="com.zlp.springboot.utils.Page" resultType="UserGroup">
+		select
+		<include refid="column" />
+		from UserGroup
+	</select>
+</mapper>

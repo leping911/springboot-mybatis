@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlp.springboot.RoleFunctionRelationMapper">
+	<insert id="insert" parameterType="RoleFunctionRelation">
+		<![CDATA[
+			insert into RoleFunctionRelation(
+            		rfr_rol_id,
+            		rfr_ftn_id,
+            		rfr_create_timestamp,
+            		rfr_create_usr_id
+            ) values (
+            	#{rfr_rol_id,jdbcType=VARCHAR},
+            	#{rfr_ftn_id,jdbcType=VARCHAR},
+            	#{rfr_create_timestamp,jdbcType=TIMESTAMP},
+            	#{rfr_create_usr_id,jdbcType=VARCHAR}
+            )
+		]]>
+	</insert>
+
+	<delete id="deleteByRole" parameterType="java.lang.Long">
+	    <![CDATA[
+	   		delete from RoleFunctionRelation where
+	        	rfr_rol_id = #{rfr_rol_id,jdbcType=VARCHAR}
+	    ]]>
+	</delete>
+</mapper>

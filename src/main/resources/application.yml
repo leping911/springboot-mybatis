@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/jerry
+    username: root
+    password: zengleping
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  thymeleaf:
+    cache: false
+    # Check that the templates location exists.
+    check-template-location: true
+    # Content-Type value.
+    content-type: text/html
+    # Enable MVC Thymeleaf view resolution.
+    enabled: true
+    # Template encoding.
+    encoding: UTF-8
+    # Comma-separated list of view names that should be excluded from resolution.
+    # excluded-view-names:
+    # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+    mode: HTML5
+    # Prefix that gets prepended to view names when building a URL.
+    prefix: classpath:/templates/
+    # Suffix that gets appended to view names when building a URL.
+    suffix: .html
+    # template-resolver-order:
+    # Order of the template resolver in the chain.
+    # view-names:
+    # Comma-separated list of view names that can be resolved.
+
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.zlp.springboot.entity
+
+data:
+  name : zengleping
+  user : leping911

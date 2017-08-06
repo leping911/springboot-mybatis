@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlp.springboot.mapper.FunctionMapper">
+	<sql id="column">ftn_id,ftn_name,ftn_ext_id,ftn_url,ftn_type,ftn_order,ftn_status,ftn_level,
+		ftn_create_timestamp,ftn_create_usr_id,ftn_update_timestamp,ftn_update_usr_id
+	</sql>
+	<select id="get" parameterType="Function" resultType="Function">
+		select
+		<include refid="column" />
+		from Function where ftn_id = #{ftn_id}
+	</select>
+	<insert id="insert" parameterType="Function">
+		<![CDATA[
+			insert into Function(
+            		ftn_name,
+            		ftn_ext_id,
+            		ftn_url,
+            		ftn_type,
+            		ftn_order,
+            		ftn_status,
+            		ftn_level,
+            		ftn_create_timestamp,
+            		ftn_create_usr_id
+            ) values (
+            	#{ftn_name,jdbcType=VARCHAR},
+            	#{ftn_ext_id,jdbcType=VARCHAR},
+            	#{ftn_url,jdbcType=TIMESTAMP},
+            	#{ftn_type,jdbcType=VARCHAR},
+            	#{ftn_order,jdbcType=VARCHAR},
+            	#{ftn_status,jdbcType=VARCHAR},
+            	#{ftn_level,jdbcType=VARCHAR},
+            	#{ftn_create_timestamp,jdbcType=TIMESTAMP},
+            	#{ftn_create_usr_id,jdbcType=VARCHAR}
+            )
+		]]>
+		<selectKey keyProperty="ftn_id" resultType="Long" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="update" parameterType="Function">
+		<![CDATA[
+			update Function set
+				ftn_name = #{ftn_name,jdbcType=VARCHAR},
+            	ftn_ext_id = #{ftn_ext_id,jdbcType=VARCHAR},
+            	ftn_url = #{ftn_url,jdbcType=TIMESTAMP},
+            	ftn_type = #{ftn_type,jdbcType=VARCHAR},
+            	ftn_order = #{ftn_order,jdbcType=VARCHAR},
+            	ftn_status = #{ftn_status,jdbcType=VARCHAR},
+            	ftn_level = #{ftn_level,jdbcType=VARCHAR},
+            	ftn_create_timestamp = #{ftn_create_timestamp,jdbcType=TIMESTAMP},
+            	ftn_create_usr_id = #{ftn_create_usr_id,jdbcType=VARCHAR}
+				where ftn_id = #{ftn_id,jdbcType=VARCHAR}
+		 ]]>
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+	    <![CDATA[
+	   		delete from Function where
+	        	ftn_id = #{ftn_id,jdbcType=VARCHAR}
+	    ]]>
+	</delete>
+
+	<select id="list" parameterType="Map" resultType="Function">
+		select
+		<include refid="column" />
+		from Function
+	</select>
+	
+	<select id="page" parameterType="com.zlp.springboot.utils.Page" resultType="Function">
+		select
+		<include refid="column" />
+		from Function
+	</select>
+</mapper>

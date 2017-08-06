@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlp.springboot.mapper.RoleMapper">
+	<sql id="column">rol_id,rol_name,rol_url_home,rol_type,rol_defaul_ind,rol_status,rol_level,
+		rol_create_timestamp,rol_create_usr_id,rol_update_timestamp,rol_update_usr_id
+	</sql>
+	<select id="get" parameterType="Role" resultType="Role">
+		select
+		<include refid="column" />
+		from Role where rol_id = #{rol_id}
+	</select>
+	<insert id="insert" parameterType="Role">
+		<![CDATA[
+			insert into Role(
+            		rol_name,
+            		rol_url_home,
+            		rol_type,
+            		rol_defaul_ind,
+            		rol_status,
+            		rol_level,
+            		rol_create_timestamp,
+            		rol_create_usr_id
+            ) values (
+            	#{rol_name,jdbcType=VARCHAR},
+            	#{rol_url_home,jdbcType=VARCHAR},
+            	#{rol_type,jdbcType=VARCHAR},
+            	#{rol_defaul_ind,jdbcType=VARCHAR},
+            	#{rol_status,jdbcType=VARCHAR},
+            	#{rol_level,jdbcType=VARCHAR},
+            	#{rol_create_timestamp,jdbcType=TIMESTAMP},
+            	#{rol_create_usr_id,jdbcType=VARCHAR}
+            )
+		]]>
+		<selectKey keyProperty="rol_id" resultType="Long" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="update" parameterType="Role">
+		<![CDATA[
+			update Role set
+				rol_name = #{rol_name,jdbcType=VARCHAR},
+            	rol_url_home = #{rol_url_home,jdbcType=VARCHAR},
+            	rol_type = #{rol_type,jdbcType=VARCHAR},
+            	rol_defaul_ind = #{rol_defaul_ind,jdbcType=VARCHAR},
+            	rol_status = #{rol_status,jdbcType=VARCHAR},
+            	rol_level = #{rol_level,jdbcType=VARCHAR},
+            	rol_create_timestamp = #{rol_create_timestamp,jdbcType=TIMESTAMP},
+            	rol_create_usr_id = #{rol_create_usr_id,jdbcType=VARCHAR}
+				where rol_id = #{rol_id,jdbcType=VARCHAR}
+		 ]]>
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+	    <![CDATA[
+	   		delete from Role where
+	        	rol_id = #{rol_id,jdbcType=VARCHAR}
+	    ]]>
+	</delete>
+
+	<select id="list" parameterType="Map" resultType="Role">
+		select
+		<include refid="column" />
+		from Role
+	</select>
+	
+	<select id="page" parameterType="com.zlp.springboot.utils.Page" resultType="Role">
+		select
+		<include refid="column" />
+		from Role
+	</select>
+</mapper>

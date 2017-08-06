@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlp.springboot.mapper.UserGroupRelationMapper">
+	<insert id="insert" parameterType="UserGroupRelation">
+		<![CDATA[
+			insert into UserGroupRelation(
+            		ugr_usr_id,
+            		ugr_usg_id,
+            		ugr_order,
+            		ugr_parent_ind,
+            		ugr_create_timestamp,
+            		ugr_create_usr_id
+            ) values (
+            	#{ugr_usr_id,jdbcType=VARCHAR},
+            	#{ugr_usg_id,jdbcType=VARCHAR},
+            	#{ugr_order,jdbcType=TIMESTAMP},
+            	#{ugr_parent_ind,jdbcType=VARCHAR},
+            	#{ugr_create_timestamp,jdbcType=TIMESTAMP},
+            	#{ugr_create_usr_id,jdbcType=VARCHAR}
+            )
+		]]>
+	</insert>
+
+	<delete id="deleteByUser" parameterType="java.lang.Long">
+	    <![CDATA[
+	   		delete from UserGroupRelation where
+	        	ugr_usr_id = #{ugr_usr_id,jdbcType=VARCHAR}
+	    ]]>
+	</delete>
+</mapper>
