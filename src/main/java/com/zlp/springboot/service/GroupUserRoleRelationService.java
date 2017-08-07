@@ -2,7 +2,7 @@ package com.zlp.springboot.service;
 
 import com.zlp.springboot.entity.GroupUserRoleRelation;
 import com.zlp.springboot.mapper.GroupUserRoleRelationMapper;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class GroupUserRoleRelationService extends BaseService<GroupUserRoleRelat
 	 * @param prof
 	 * @return
 	 */
-	public long insert(long gur_usg_id, long gur_rol_id, long gur_usr_id, LoginUserProfile prof) {
+	public long insert(long gur_usg_id, long gur_rol_id, long gur_usr_id, LoginProfile prof) {
 		GroupUserRoleRelation groupUserRoleRelation = new GroupUserRoleRelation();
 		groupUserRoleRelation.setGur_usg_id(gur_usg_id);
 		groupUserRoleRelation.setGur_rol_id(gur_rol_id);

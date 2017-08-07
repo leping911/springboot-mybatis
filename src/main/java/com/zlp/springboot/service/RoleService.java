@@ -6,7 +6,7 @@ import com.zlp.springboot.entity.Role;
 import com.zlp.springboot.mapper.RoleMapper;
 import com.zlp.springboot.utils.Page;
 import com.zlp.springboot.utils.Params;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class RoleService extends BaseService<Role>{
 	 * @param prof
 	 * @return
 	 */
-	public long insert(Role role,LoginUserProfile prof){
+	public long insert(Role role,LoginProfile prof){
 		role.setRol_create_timestamp(getDate());
 		role.setRol_create_usr_id(prof.getUsr_id());
 		return roleMapper.insert(role);
@@ -38,7 +38,7 @@ public class RoleService extends BaseService<Role>{
 	 * @param prof
 	 * @return
 	 */
-	public long update(Role role,LoginUserProfile prof){
+	public long update(Role role,LoginProfile prof){
 		role.setRol_update_timestamp(getDate());
 		role.setRol_update_usr_id(prof.getUsr_id());
 		return roleMapper.update(role);

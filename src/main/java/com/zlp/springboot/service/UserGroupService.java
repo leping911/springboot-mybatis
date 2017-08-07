@@ -6,7 +6,7 @@ import com.zlp.springboot.entity.UserGroup;
 import com.zlp.springboot.mapper.UserGroupMapper;
 import com.zlp.springboot.utils.Page;
 import com.zlp.springboot.utils.Params;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class UserGroupService extends BaseService<UserGroup>{
 	 * @param prof
 	 * @return
 	 */
-	public long insert(UserGroup userGroup,LoginUserProfile prof){
+	public long insert(UserGroup userGroup,LoginProfile prof){
 		userGroup.setUsg_create_timestamp(getDate());
 		userGroup.setUsg_create_usr_id(prof.getUsr_id());
 		return userGroupMapper.insert(userGroup);
@@ -38,7 +38,7 @@ public class UserGroupService extends BaseService<UserGroup>{
 	 * @param prof
 	 * @return
 	 */
-	public long update(UserGroup userGroup,LoginUserProfile prof){
+	public long update(UserGroup userGroup,LoginProfile prof){
 		userGroup.setUsg_update_timestamp(getDate());
 		userGroup.setUsg_update_usr_id(prof.getUsr_id());
 		return userGroupMapper.update(userGroup);

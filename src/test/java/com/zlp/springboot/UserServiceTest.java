@@ -2,7 +2,7 @@ package com.zlp.springboot;
 
 import com.zlp.springboot.entity.User;
 import com.zlp.springboot.service.UserService;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class UserServiceTest {
     public void findByName() throws Exception {
         User user = new User();
         user.setUsr_name("user01");
-        LoginUserProfile prof = new LoginUserProfile();
+        LoginProfile prof = new LoginProfile();
         prof.setUsr_id(1);
         userService.insert(user, prof);
     }

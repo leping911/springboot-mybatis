@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.zlp.springboot.entity.User;
 import com.zlp.springboot.mapper.UserMapper;
+import com.zlp.springboot.utils.Md5;
 import com.zlp.springboot.utils.Page;
 import com.zlp.springboot.utils.Params;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,10 @@ public class UserService extends BaseService<User>{
 	 * @param prof
 	 * @return
 	 */
-	public long insert(User user,LoginUserProfile prof){
+	public long insert(User user,LoginProfile prof) {
+		if(user.getUsr_password() != null) {
+			user.setUsr_password(Md5.EncoderByMd5(user.getUsr_password()));
+		}
 		user.setUsr_create_timestamp(getDate());
 		user.setUsr_create_usr_id(prof.getUsr_id());
 		return userMapper.insert(user);
@@ -38,7 +42,7 @@ public class UserService extends BaseService<User>{
 	 * @param prof
 	 * @return
 	 */
-	public long update(User user,LoginUserProfile prof){
+	public long update(User user,LoginProfile prof){
 		user.setUsr_update_timestamp(getDate());
 		user.setUsr_update_usr_id(prof.getUsr_id());
 		return userMapper.update(user);
@@ -68,5 +72,9 @@ public class UserService extends BaseService<User>{
 	 */
 	public void select(Page<User> page){
 		userMapper.page(page);
+	}
+
+	public User getUserByUserName(String usr_name) {
+		return userMapper.getUserByUserName(usr_name);
 	}
 }

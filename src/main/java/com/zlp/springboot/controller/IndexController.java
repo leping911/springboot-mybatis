@@ -1,8 +1,7 @@
 package com.zlp.springboot.controller;
 
-import com.zlp.springboot.properties.DataProperties;
 import com.zlp.springboot.service.UserService;
-import com.zlp.springboot.utils.Params;
+import com.zlp.springboot.vo.LoginProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("home")
-public class HomeController {
+@RequestMapping("index")
+public class IndexController {
 	
-	Logger logger = LoggerFactory.getLogger(HomeController.class);
+	Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@Autowired
 	UserService userService;
-	
-	@Autowired
-	DataProperties dataProperties;
 
 	@GetMapping("")
-	public String index(Model model, Params params) {
-		userService.list(params.getParams());
-		model.addAttribute("name", "zengleping");
+	public String index(Model model, LoginProfile prof) {
+		model.addAttribute("prof", prof);
 		return "index";
 	}
 }

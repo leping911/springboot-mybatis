@@ -11,7 +11,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * Created by Administrator on 2017/7/6.
  */
 @RestController
-@RequestMapping("/index")
+@RequestMapping("/hello")
 @Api("测试swagger")
 public class HelloController {
 

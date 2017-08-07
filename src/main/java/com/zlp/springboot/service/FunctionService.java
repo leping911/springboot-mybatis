@@ -6,7 +6,7 @@ import com.zlp.springboot.entity.Function;
 import com.zlp.springboot.mapper.FunctionMapper;
 import com.zlp.springboot.utils.Page;
 import com.zlp.springboot.utils.Params;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class FunctionService extends BaseService<Function>{
 	 * @param prof
 	 * @return
 	 */
-	public long insert(Function function,LoginUserProfile prof){
+	public long insert(Function function,LoginProfile prof){
 		function.setFtn_create_timestamp(getDate());
 		function.setFtn_create_usr_id(prof.getUsr_id());
 		return functionMapper.insert(function);
@@ -39,7 +39,7 @@ public class FunctionService extends BaseService<Function>{
 	 * @param prof
 	 * @return
 	 */
-	public long update(Function function,LoginUserProfile prof){
+	public long update(Function function,LoginProfile prof){
 		function.setFtn_update_timestamp(getDate());
 		function.setFtn_update_usr_id(prof.getUsr_id());
 		return functionMapper.update(function);

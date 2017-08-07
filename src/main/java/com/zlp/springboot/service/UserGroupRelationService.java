@@ -7,7 +7,7 @@ import com.zlp.springboot.entity.UserGroup;
 import com.zlp.springboot.entity.UserGroupRelation;
 import com.zlp.springboot.mapper.UserGroupMapper;
 import com.zlp.springboot.mapper.UserGroupRelationMapper;
-import com.zlp.springboot.vi.LoginUserProfile;
+import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class UserGroupRelationService extends BaseService<UserGroupRelation> {
 	 * @param prof
 	 * @return
 	 */
-	public long insert(long ugr_usr_id, long ugr_usg_id, LoginUserProfile prof) {
+	public long insert(long ugr_usr_id, long ugr_usg_id, LoginProfile prof) {
 		List<UserGroup> userGroupList = userGroupMapper.getParentGroupList(ugr_usg_id);
 		UserGroupRelation userGroupRelation = null;
 		Timestamp cur_time = getDate();

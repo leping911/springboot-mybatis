@@ -1,4 +1,6 @@
-package com.zlp.springboot.vi;
+package com.zlp.springboot.vo;
+
+import com.zlp.springboot.entity.User;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -9,8 +11,11 @@ import java.sql.Timestamp;
  * @author Louis
  *
  */
-public class LoginUserProfile implements Serializable {
+public class LoginProfile implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	public final static String AUTH_LOGIN_PROFILE = "AUTH_LOGIN_PROFILE";
+
 	private long usr_id;
 	private String usr_name;
 	private String usr_password;
@@ -127,5 +132,22 @@ public class LoginUserProfile implements Serializable {
 
 	public void setUsr_update_usr_id(long usr_update_usr_id) {
 		this.usr_update_usr_id = usr_update_usr_id;
+	}
+
+	public void copy(User user) {
+		if(user != null) {
+			this.usr_name = user.getUsr_name();
+			this.usr_email = user.getUsr_email();
+			this.usr_id = user.getUsr_id();
+			this.usr_create_timestamp = user.getUsr_create_timestamp();
+			this.usr_create_usr_id = user.getUsr_create_usr_id();
+			this.usr_nickname = user.getUsr_nickname();
+			this.usr_idcard = user.getUsr_idcard();
+			this.usr_real_name = user.getUsr_real_name();
+			this.usr_sex = user.getUsr_sex();
+			this.usr_tel = user.getUsr_tel();
+			this.usr_update_timestamp = user.getUsr_update_timestamp();
+			this.usr_update_usr_id = user.getUsr_update_usr_id();
+		}
 	}
 }
