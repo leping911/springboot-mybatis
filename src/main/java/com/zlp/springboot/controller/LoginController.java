@@ -6,7 +6,6 @@ import com.zlp.springboot.utils.Md5;
 import com.zlp.springboot.vo.LoginProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +32,7 @@ public class LoginController {
     }
 
     @PostMapping("")
-    public String loginAction(Model model, HttpSession session, @ModelAttribute User user, HttpServletRequest request) {
+    public String loginAction(HttpSession session, HttpServletRequest request, @ModelAttribute User user) {
         session.invalidate();
         session = request.getSession(true);
         if(user != null && user.getUsr_name() != null && user.getUsr_password() != null) {
@@ -45,12 +44,12 @@ public class LoginController {
                 session.setAttribute(LoginProfile.AUTH_LOGIN_PROFILE, prof);
             }
         }
-        return "redirect:/index";
+        return "redirect:/admin/index";
     }
 
     @GetMapping("out")
     public String loginOut(HttpSession session) {
         session.invalidate();
-        return "login";
+        return "redirect:/login";
     }
 }

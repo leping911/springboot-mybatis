@@ -28,7 +28,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
 
         registry.addInterceptor(new MyInterceptor()).addPathPatterns("/*");//添加拦截器并配置拦截请求
 
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/*");//添加拦截器并配置拦截请求
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/admin/**");//添加拦截器并配置拦截请求
 
     }
 
